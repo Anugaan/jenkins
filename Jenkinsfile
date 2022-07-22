@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    registry = "myawspk/myrepo"
-    registryCredential = 'dockerhub'
+    registry = "anugaan/myrepo"
+    registryCredential = 'docker'
     dockerImage = ''
   }
   agent any
@@ -9,8 +9,8 @@ pipeline {
     stage('Building Docker Image') {
       steps{
       // Get code from a GitHub repository
-      git url: 'https://github.com/myawspk/jenkins.git', branch: 'main',
-      credentialsId: 'github'
+      git url: 'https://github.com/Anugaan/jenkins.git', branch: 'main',
+      credentialsId: 'github_credentials'
 	    script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
